@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>How Did We Get Here? ✨</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head> <audio id="bg-music" loop>
+    <source src="love.mp3" type="audio/mpeg">
+  </audio>
+  
+<body class="center">
+    <audio id="bg-music" loop>
+        <source src="love.mp3" type="audio/mpeg">
+      </audio>
+      
+      
+<h2>How Did We Get Here? ✨</h2>
+<div class="note-stack tilt-right">
+<p>
+It started with a conversation…  
+then laughter…  
+then feelings we tried to ignore.
+</p>
+
+<p>
+I asked you out.  
+We tried.  
+We broke.  
+And somehow — we found our way back again.
+</p>
+
+<p>
+Because loving you was never a mistake.  
+It was a choice I’d make again.
+</p>
+<span class="heart-stamp heart-soft">💗</span>
+</div>
+<a class="btn" href="menu.html">Back 💕</a>
+<script>
+    document.addEventListener("mousemove", function(e) {
+      const sparkle = document.createElement("div");
+      sparkle.className = "sparkle";
+      sparkle.style.left = e.clientX + "px";
+      sparkle.style.top = e.clientY + "px";
+  
+      document.body.appendChild(sparkle);
+  
+      setTimeout(() => {
+        sparkle.remove();
+      }, 800);
+    });
+  </script>
+  <script>
+    const music = document.getElementById("bg-music");
+  
+    function playMusic() {
+      music.play();
+    }
+  
+    // Resume music smoothly
+    const savedTime = localStorage.getItem("musicTime");
+    if (savedTime) {
+      music.currentTime = savedTime;
+    }
+  
+    music.play().catch(() => {});
+  
+    window.addEventListener("beforeunload", () => {
+      localStorage.setItem("musicTime", music.currentTime);
+    });
+  </script>
+  
+  
+</body>
+</html>
+

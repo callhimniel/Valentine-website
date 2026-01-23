@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.body.classList.add("fade-in");
+    });
+  </script>
+  
+  
+  <title>Happy Valentine’s Day 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head> <audio id="bg-music" loop>
+    <source src="love.mp3" type="audio/mpeg">
+  </audio>
+  
+<body class="center">
+    <audio id="bg-music" loop>
+        <source src="love.mp3" type="audio/mpeg">
+      </audio>
+      
+      
+    <div class="hearts">
+        <div class="heart" style="left:10%"></div>
+        <div class="heart" style="left:30%"></div>
+        <div class="heart" style="left:50%"></div>
+        <div class="heart" style="left:70%"></div>
+        <div class="heart" style="left:90%"></div>
+      </div>
+      
+      
+
+  <h1>Happy Valentine’s Day 🌹</h1>
+
+  <p>
+    Out of everyone in this world,  
+    I would still choose you.
+  </p>
+
+  <p>
+    Thank you for loving me,  
+    for choosing me,  
+    and for being my favorite person.
+  </p>
+
+  <p>
+    I love you — today, tomorrow, always. 💕
+  </p>
+  <script>
+    document.addEventListener("mousemove", function(e) {
+      const sparkle = document.createElement("div");
+      sparkle.className = "sparkle";
+      sparkle.style.left = e.clientX + "px";
+      sparkle.style.top = e.clientY + "px";
+  
+      document.body.appendChild(sparkle);
+  
+      setTimeout(() => {
+        sparkle.remove();
+      }, 800);
+    });
+  </script>
+  <script>
+    const music = document.getElementById("bg-music");
+  
+    function playMusic() {
+      music.play();
+    }
+  
+    // Resume music smoothly
+    const savedTime = localStorage.getItem("musicTime");
+    if (savedTime) {
+      music.currentTime = savedTime;
+    }
+  
+    music.play().catch(() => {});
+  
+    window.addEventListener("beforeunload", () => {
+      localStorage.setItem("musicTime", music.currentTime);
+    });
+  </script>
+  
+  
+</body>
+</html>

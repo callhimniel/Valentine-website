@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Prove You Love Me 💋</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="center">
+    <audio id="bg-music" loop>
+        <source src="love.mp3" type="audio/mpeg">
+      </audio>
+      
+      
+<h2>Prove You Love Me 😏💗</h2>
+
+<p>
+Okay… before we go to the last page 😌  
+I need just one tiny proof.
+</p>
+
+<p>
+Send me a picture of you making a kiss 😘  
+So I can smile like a fool.
+</p>
+
+<input type="file" accept="image/*" id="kissPic" class="btn">
+
+<img id="preview" style="display:none; width:200px; border-radius:20px; margin-top:15px;">
+
+<p class="hidden">
+Yes… I’m blushing already.
+</p>
+
+<a class="btn" href="final.html" id="continueBtn" style="display:none;">
+Continue 💕
+</a>
+
+<!-- Sparkles -->
+<script>
+  document.addEventListener("mousemove", function(e) {
+    const sparkle = document.createElement("div");
+    sparkle.className = "sparkle";
+    sparkle.style.left = e.clientX + "px";
+    sparkle.style.top = e.clientY + "px";
+    document.body.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 800);
+  });
+</script>
+
+<!-- Image preview logic -->
+<script>
+  const input = document.getElementById("kissPic");
+  const preview = document.getElementById("preview");
+  const btn = document.getElementById("continueBtn");
+
+  input.addEventListener("change", () => {
+    const file = input.files[0];
+    if (file) {
+      preview.src = URL.createObjectURL(file);
+      preview.style.display = "block";
+      btn.style.display = "inline-block";
+    }
+  });
+</script>
+
+<!-- Music persistence -->
+<script>
+  const music = document.getElementById("bg-music");
+  const savedTime = localStorage.getItem("musicTime");
+  if (savedTime) music.currentTime = savedTime;
+  music.play().catch(() => {});
+  window.addEventListener("beforeunload", () => {
+    localStorage.setItem("musicTime", music.currentTime);
+  });
+</script>
+
+</body>
+</html>

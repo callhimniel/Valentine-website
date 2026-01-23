@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To My Love 💌</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head><audio id="bg-music" loop>
+    <source src="love.mp3" type="audio/mpeg">
+  </audio>
+  
+<body class="center">
+    <audio id="bg-music" loop>
+        <source src="love.mp3" type="audio/mpeg">
+      </audio>
+      
+      
+<h2>To My Love 💖</h2>
+<div class="note-stack tilt-left">
+<p>
+I hope this finds you smiling,  
+because your smile is one of my favorite things in this world.
+</p>
+
+<p>
+You bring happiness, warmth, and love into my life every single day.  
+Loving you feels natural — like home.
+</p>
+
+<p>
+Thank you for being you,  
+for loving me the way you do,  
+and for choosing me.
+</p>
+
+<p class="hidden">
+If you're reading this…  
+I'm already thinking about you.
+</p>
+<span class="heart-stamp heart-soft">💗</span>
+</div>
+<a class="btn" href="menu.html">Back 💕</a>
+<script>
+    document.addEventListener("mousemove", function(e) {
+      const sparkle = document.createElement("div");
+      sparkle.className = "sparkle";
+      sparkle.style.left = e.clientX + "px";
+      sparkle.style.top = e.clientY + "px";
+  
+      document.body.appendChild(sparkle);
+  
+      setTimeout(() => {
+        sparkle.remove();
+      }, 800);
+    });
+  </script>
+  <script>
+    const music = document.getElementById("bg-music");
+  
+    function playMusic() {
+      music.play();
+    }
+  
+    // Resume music smoothly
+    const savedTime = localStorage.getItem("musicTime");
+    if (savedTime) {
+      music.currentTime = savedTime;
+    }
+  
+    music.play().catch(() => {});
+  
+    window.addEventListener("beforeunload", () => {
+      localStorage.setItem("musicTime", music.currentTime);
+    });
+  </script>
+  
+  
+</body>
+</html>
+
+  

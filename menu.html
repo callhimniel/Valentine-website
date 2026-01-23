@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Our Love 💗</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head><audio id="bg-music" loop>
+    <source src="love.mp3" type="audio/mpeg">
+  </audio>
+  
+<body>
+      
+<h2 class="center">Swipe through our story 💕</h2>
+
+<div class="horizontal-scroll">
+
+  <a href="love-letter.html" class="h-card">
+    💌  
+    <h3>To My Love</h3>
+    <p>Words from my heart</p>
+  </a>
+
+  <a href="love-birds.html" class="h-card">
+    🕊️  
+    <h3>Tales of Two Love Birds</h3>
+    <p>Our love, retold softly</p>
+  </a>
+
+  <a href="our-story.html" class="h-card">
+    ✨  
+    <h3>How Did We Get Here?</h3>
+    <p>Our real journey</p>
+  </a>
+
+  <a href="anniversary.html" class="h-card">
+    📸  
+    <h3>A Date to Remember</h3>
+    <p>August 3 💖</p>
+  </a>
+
+</div>
+<script>
+    document.addEventListener("mousemove", function(e) {
+      const sparkle = document.createElement("div");
+      sparkle.className = "sparkle";
+      sparkle.style.left = e.clientX + "px";
+      sparkle.style.top = e.clientY + "px";
+  
+      document.body.appendChild(sparkle);
+  
+      setTimeout(() => {
+        sparkle.remove();
+      }, 800);
+    });
+  </script>
+  <script>
+    const music = document.getElementById("bg-music");
+  
+    function playMusic() {
+      music.play();
+    }
+  
+    // Resume music smoothly
+    const savedTime = localStorage.getItem("musicTime");
+    if (savedTime) {
+      music.currentTime = savedTime;
+    }
+  
+    music.play().catch(() => {});
+  
+    window.addEventListener("beforeunload", () => {
+      localStorage.setItem("musicTime", music.currentTime);
+    });
+  </script>
+  
+  
+</body>
+</html>

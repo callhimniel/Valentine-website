@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>August 3 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head> <audio id="bg-music" loop>
+    <source src="love.mp3" type="audio/mpeg">
+  </audio>
+  
+<body  class="center">
+    <audio id="bg-music" loop>
+        <source src="love.mp3" type="audio/mpeg">
+      </audio>
+      
+      
+<h2>A Date to Remember 💕</h2>
+<div class="note-stack tilt-left">
+<p>
+August 3 — the day love became real.
+</p>
+
+<img src="photo1.jpg" width="90%" style="border-radius:20px; margin:10px;">
+<img src="photo2.jpg" width="90%" style="border-radius:20px; margin:10px;">
+<img src="herpic1.jpg" width="100%">
+<img src="photo3.jpg" width="90%" style="border-radius:20px; margin:10px;">
+
+<p>
+Every memory with you is a treasure.  
+Every moment, a blessing.
+</p>
+<span class="heart-stamp heart-red">❤️</span>
+</div>
+<a class="btn" href="prove.html">Before we finish… 😏</a>
+
+<script>
+    document.addEventListener("mousemove", function(e) {
+      const sparkle = document.createElement("div");
+      sparkle.className = "sparkle";
+      sparkle.style.left = e.clientX + "px";
+      sparkle.style.top = e.clientY + "px";
+  
+      document.body.appendChild(sparkle);
+  
+      setTimeout(() => {
+        sparkle.remove();
+      }, 800);
+    });
+  </script>
+  
+  <script>
+    const music = document.getElementById("bg-music");
+  
+    // Resume music
+    const savedTime = localStorage.getItem("musicTime");
+    if (savedTime) {
+      music.currentTime = savedTime;
+    }
+  
+    music.play().catch(() => {});
+  
+    // Save time before leaving page
+    window.addEventListener("beforeunload", () => {
+      localStorage.setItem("musicTime", music.currentTime);
+    });
+  </script>
+  
+ 
+  
+</body>
+</html>
