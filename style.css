@@ -1,360 +1,326 @@
 body {
-    margin: 0;
-    font-family: 'Dancing Script', cursive;
-    background: radial-gradient(circle at top, #2b002b, #000);
-    color: #ffd6f6;
-    min-height: 100vh;
-  }
-  
-  h1, h2, h3 {
-    font-family: 'Pacifico', cursive;
-    color: #ff8fd8;
-  }
-  
-  
-  .heart-stamp {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    font-size: 36px;
-    color: #ff5fa2;
-    opacity: 0;
-    transform: rotate(-15deg) scale(0.5);
-    animation: stamp 0.8s ease forwards;
-  }
-  .heart-red { color: #ff4d6d; }
+  margin: 0;
+  font-family: 'Dancing Script', cursive;
+  background: radial-gradient(circle at top, #2b002b, #000);
+  color: #ffd6f6;
+  min-height: 100vh;
+  font-size: clamp(16px, 4vw, 18px);
+}
+
+.phone-frame {
+  max-width: 430px; /* iPhone 12 Pro Max width */
+  margin: auto;
+  min-height: 100vh;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* Notebook style */
+.note-stack {
+  position: relative;
+  background: rgba(255, 255, 255, 0.9); /* slightly transparent paper */
+  padding: 25px 22px 25px 35px;
+  border-radius: 12px;
+  max-width: 350px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+  color: #333;
+  margin: 20px auto;
+}
+.note-stack::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  border-radius: 12px;
+  transform: translate(10px, 10px);
+  z-index: -1;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+.note-stack::after {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: #ff8fd8;
+  border-radius: 2px;
+}
+.note-stack p {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 26px,
+    rgba(0,0,0,0.04) 27px
+  );
+  padding-bottom: 5px;
+}
+
+h1, h2, h3 {
+  font-family: 'Pacifico', cursive;
+  color: #ff8fd8;
+  margin: 0;
+}
+
+p {
+  max-width: 320px;
+  line-height: 1.6;
+}
+
+/* Center alignment helper */
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Horizontal scroll container */
+.horizontal-scroll {
+  display: flex;
+  gap: 20px;
+  padding: 30px 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Notebook style card */
+.h-card {
+  position: relative;
+  min-width: 260px;
+  max-width: 360px;
+  height: 340px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px 18px 20px 32px;
+  text-decoration: none;
+  color: #333;
+  scroll-snap-align: center;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+  transform: rotate(-1.5deg);
+  transition: transform 0.3s ease;
+}
+
+/* Pink margin line on the left */
+.h-card::before {
+  content: "";
+  position: absolute;
+  left: 16px;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: #ff9ecf;
+  border-radius: 2px;
+}
+
+/* Lined notebook background */
+.h-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 26px,
+    rgba(0,0,0,0.04) 27px
+  );
+  pointer-events: none;
+}
+
+/* Hover effect for cards */
+.h-card:hover {
+  transform: rotate(0deg) scale(1.07);
+}
+
+/* Card headings */
+.h-card h3 {
+  margin-top: 10px;
+  color: #ff5fa2;
+}
+
+/* Card paragraphs */
+.h-card p {
+  font-size: 14px;
+  color: #333;
+}
+
+/* Button style (if inside cards) */
+.btn {
+  margin-top: 20px;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #ff5fa2, #ff8fd8);
+  color: white;
+  text-decoration: none;
+  border-radius: 40px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(255, 95, 162, 0.4);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn:hover {
+  transform: scale(1.12);
+  box-shadow: 0 12px 30px rgba(255, 143, 216, 0.6);
+}
+
+/* Sparkle animation */
+.sparkle {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: #ff8fd8;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: sparkleFade 0.8s ease-out forwards;
+}
+
+@keyframes sparkleFade {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(2); }
+}
+
+/* Floating characters */
+.characters {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 20px;
+}
+
+.character {
+  width: 80px;
+  animation: float 2.5s ease-in-out infinite;
+}
+
+.character.right {
+  animation-delay: 1.2s;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
+
+/* Flying birds */
+.birds {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.bird {
+  font-size: 40px;
+  animation: fly 2s infinite ease-in-out;
+}
+
+.bird.right {
+  animation-delay: 1s;
+}
+
+@keyframes fly {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.heart-stamp {
+  position: absolute;
+  bottom: 15px;       /* position in the note */
+  right: 15px;
+  font-size: 60px;    /* bigger than before */
+  color: #ff5fa2;
+  opacity: 0;
+  transform: rotate(-15deg) scale(1);  /* no shrinking */
+  animation: stamp 0.8s ease forwards;
+}
+
+.heart-red { color: #ff4d6d; }
 .heart-soft { color: #ffb3d9; }
 
-  @keyframes stamp {
-    0% {
-      opacity: 0;
-      transform: rotate(-15deg) scale(2);
-    }
-    100% {
-      opacity: 0.9;
-      transform: rotate(-15deg) scale(1);
-    }
+@keyframes stamp {
+  0% {
+    opacity: 0;
+    transform: rotate(-15deg) scale(2);
   }
-    
-  .center {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+  100% {
+    opacity: 0.9;
+    transform: rotate(-15deg) scale(1);
   }
-  
-  h1, h2 {
-    color: #ff8fd8;
-  }
-  
-  p {
-    max-width: 320px;
-    line-height: 1.6;
-  }
-  
-  .btn {
-    margin-top: 25px;
-    padding: 14px 28px;
-    background: linear-gradient(135deg, #ff5fa2, #ff8fd8);
-    color: white;
-    text-decoration: none;
-    border-radius: 40px;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 8px 20px rgba(255, 95, 162, 0.4);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-  
-  .btn:hover {
-    transform: scale(1.12);
-    box-shadow: 0 12px 30px rgba(255, 143, 216, 0.6);
-  }
-  
-  
-  .cards {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 15px;
-    padding: 20px;
-  }
-  
-  
-  .card {
-    background: rgba(255, 143, 216, 0.15);
-    padding: 20px;
-    border-radius: 20px;
-    text-align: center;
-    text-decoration: none;
-    color: #ffd6f6;
-    font-size: 18px;
-    transition: transform 0.3s ease;
-  }
-  
-  .card:hover {
-    transform: translateY(-8px) scale(1.05);
-  }
-  
-  
-  .hidden {
-    font-size: 12px;
-    color: rgba(255, 214, 246, 0.2);
-    margin-top: 40px;
-  }
-  
-  .hidden:hover {
-    color: #ff8fd8;
-  }
-  .hearts {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    top: 0;
-    left: 0;
-    z-index: -1;
-  }
-  
-  .heart {
-    position: absolute;
-    bottom: -20px;
-    width: 20px;
-    height: 20px;
-    background: pink;
-    transform: rotate(45deg);
-    animation: floatUp 8s infinite ease-in;
-  }
-  
-  .heart::before,
-  .heart::after {
-    content: "";
-    width: 20px;
-    height: 20px;
-    background: pink;
-    border-radius: 50%;
-    position: absolute;
-  }
-  
-  .heart::before {
-    top: -10px;
-    left: 0;
-  }
-  
-  .heart::after {
-    left: -10px;
-    top: 0;
-  }
-  
-  @keyframes floatUp {
-    0% {
-      transform: translateY(0) rotate(45deg);
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(-800px) rotate(45deg);
-      opacity: 0;
-    }
-  }
-  
-  .birds {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-bottom: 20px;
-  }
-  
-  .bird {
-    font-size: 40px;
-    animation: fly 2s infinite ease-in-out;
-  }
-  
-  .bird.right {
-    animation-delay: 1s;
-  }
-  
-  @keyframes fly {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0); }
-  }
-  
-  fade-in {
-    animation: fadeIn 0.8s ease;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: scale(0.98);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  
-.horizontal-scroll {
-    display: flex;
-    gap: 20px;
-    padding: 30px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-  }
-  
-  .horizontal-scroll::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .h-card {
-    min-width: 260px;
-    height: 340px;
-    background: #fff;
-    border-radius: 12px;
-    padding: 20px 18px 20px 30px;
-    text-align: left;
-    color: #333;
-    text-decoration: none;
-    scroll-snap-align: center;
-    position: relative;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-    transform: rotate(-1.5deg);
-    transition: transform 0.3s ease;
-  }
-  
-  /* Pink margin line */
-  .h-card::before {
-    content: "";
-    position: absolute;
-    left: 15px;
-    top: 0;
-    width: 3px;
-    height: 100%;
-    background: #ff8fd8;
-    border-radius: 2px;
-  }
-  
-  /* Lined paper effect */
-  .h-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(
-      to bottom,
-      transparent,
-      transparent 26px,
-      rgba(0,0,0,0.04) 27px
-    );
-    pointer-events: none;
-  }
-  
-  .h-card:hover {
-    transform: rotate(0deg) scale(1.07);
-  }
-  
-  .h-card h3 {
-    margin-top: 10px;
-    color: #ff5fa2;
-  }
-  
-  .h-card p {
-    font-size: 14px;
-  }
-  
-  .sparkle {
-    position: fixed;
-    width: 6px;
-    height: 6px;
-    background: #ff8fd8;
-    border-radius: 50%;
-    pointer-events: none;
-    animation: sparkleFade 0.8s ease-out forwards;
-  }
-  
-  @keyframes sparkleFade {
-    from {
-      opacity: 1;
-      transform: scale(1);
-    }
-    to {
-      opacity: 0;
-      transform: scale(2);
-    }
-  }
-  .characters {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-bottom: 20px;
-  }
-  
-  .character {
-    width: 80px;
-    animation: float 2.5s ease-in-out infinite;
-  }
-  
-  .character.right {
-    animation-delay: 1.2s;
-  }
-  
-  @keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
-    100% { transform: translateY(0); }
-  }
-  .note-stack {
-    position: relative;
-    background: #fff;
-    padding: 25px 22px 25px 35px;
-    border-radius: 12px;
-    max-width: 350px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-    color: #333;
-  }
-  
-  /* Back note */
-  .note-stack::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: #fff;
-    border-radius: 12px;
-    transform: translate(10px, 10px);
-    z-index: -1;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  }
-  
-  /* Pink margin */
-  .note-stack::after {
-    content: "";
-    position: absolute;
-    left: 15px;
-    top: 0;
-    width: 3px;
-    height: 100%;
-    background: #ff8fd8;
-    border-radius: 2px;
-  }
-  
-  /* Lined paper */
-  .note-stack p {
-    background-image: repeating-linear-gradient(
-      to bottom,
-      transparent,
-      transparent 26px,
-      rgba(0,0,0,0.04) 27px
-    );
-    padding-bottom: 5px;
-  }
-  .tilt-left {
-    transform: rotate(-1.5deg);
-  }
-  
-  .tilt-right {
-    transform: rotate(1.5deg);
-  }
-  
-  
-  
-  
+}
+
+/* Heart float animation */
+.hearts {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.heart {
+  position: absolute;
+  bottom: -20px;
+  width: 20px;
+  height: 20px;
+  background: pink;
+  transform: rotate(45deg);
+  animation: floatUp 8s infinite ease-in;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: pink;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart::after {
+  left: -10px;
+  top: 0;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+  100% { transform: translateY(-800px) rotate(45deg); opacity: 0; }
+}
+
+
+.hidden {
+  font-size: 12px;
+  color: rgba(255, 214, 246, 0.2); /* very light, can tweak for visibility */
+  margin-top: 40px;
+  display: block;
+  text-align: center;
+}
+
+.hidden:hover {
+  color: #ff8fd8;  /* appears on hover */
+  cursor: pointer;
+}
+
+/* Final message */
+.final-message {
+  max-width: 320px;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1.6;
+}

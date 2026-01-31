@@ -1,79 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tales of Two Love Birds 🕊️</title>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<div class="characters">
-    <img src="bird1.png" class="character">
-    <img src="bird2.png" class="character right">
-  </div>
-  
-  <audio id="bg-music" loop>
-    <source src="love.mp3" type="audio/mpeg">
-  </audio>
-  
 <body class="center">
+  <div class="phone-frame" style="background: radial-gradient(circle at top, #2b002b, #000); color: #ffd6f6;">
+
+    <!-- Characters -->
+    <div class="characters">
+      <img src="bird1.png" class="character">
+      <img src="bird2.png" class="character right">
+    </div>
+
+    <!-- Page Title -->
+    <h2>Tales of Two Love Birds 🕊️</h2>
+
+    <!-- Notebook Card -->
+    <div class="note-stack">
+      <p>
+        Once upon a time, two little love birds met by chance.
+        They didn’t know it yet, but they were about to change each other’s lives.
+      </p>
+
+      <p>
+        They laughed, they argued, they grew —  
+        but no matter what, they always found their way back to each other.
+      </p>
+
+      <p>
+        Because some hearts, once connected,  
+        never really let go.
+      </p>
+      <span class="heart-stamp heart-soft">💗</span>
+    </div>
+
+    <!-- Back Button -->
+    <a class="btn" href="menu.html">Back 💗</a>
+
+    <!-- Sparkles -->
+    <script>
+      document.addEventListener("mousemove", function(e) {
+        const sparkle = document.createElement("div");
+        sparkle.className = "sparkle";
+        sparkle.style.left = e.clientX + "px";
+        sparkle.style.top = e.clientY + "px";
+        document.body.appendChild(sparkle);
+        setTimeout(() => { sparkle.remove(); }, 800);
+      });
+    </script>
+
+    <!-- Background Music -->
     <audio id="bg-music" loop>
-        <source src="love.mp3" type="audio/mpeg">
-      </audio>
-      
-      
+      <source src="love.mp3" type="audio/mpeg">
+    </audio>
+    <script>
+      const music = document.getElementById("bg-music");
+      const savedTime = localStorage.getItem("musicTime");
+      if (savedTime) music.currentTime = savedTime;
+      music.play().catch(() => {});
+      window.addEventListener("beforeunload", () => {
+        localStorage.setItem("musicTime", music.currentTime);
+      });
+    </script>
 
-<h2>Tales of Two Love Birds 🕊️</h2>
-<div class="note-stack">
-<p>
-Once upon a time, two little love birds met by chance.
-They didn’t know it yet, but they were about to change each other’s lives.
-</p>
-
-<p>
-They laughed, they argued, they grew —  
-but no matter what, they always found their way back to each other.
-</p>
-
-<p>
-Because some hearts, once connected,  
-never really let go.
-</p>
-<span class="heart-stamp heart-soft">💗</span>
-</div>
-<a class="btn" href="menu.html">Back 💗</a>
-<script>
-    document.addEventListener("mousemove", function(e) {
-      const sparkle = document.createElement("div");
-      sparkle.className = "sparkle";
-      sparkle.style.left = e.clientX + "px";
-      sparkle.style.top = e.clientY + "px";
-  
-      document.body.appendChild(sparkle);
-  
-      setTimeout(() => {
-        sparkle.remove();
-      }, 800);
-    });
-  </script>
-  <script>
-    const music = document.getElementById("bg-music");
-  
-    function playMusic() {
-      music.play();
-    }
-  
-    // Resume music smoothly
-    const savedTime = localStorage.getItem("musicTime");
-    if (savedTime) {
-      music.currentTime = savedTime;
-    }
-  
-    music.play().catch(() => {});
-  
-    window.addEventListener("beforeunload", () => {
-      localStorage.setItem("musicTime", music.currentTime);
-    });
-  </script>
-  
-  
+  </div>
 </body>
 </html>
